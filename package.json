@@ -1,0 +1,33 @@
+{
+  "name": "webcat-cfniu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eminoda/webcat-cfniu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eminoda/webcat-cfniu/issues"
+  },
+  "homepage": "https://github.com/eminoda/webcat-cfniu#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-if": "^2.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.0.0",
+    "gulp-sequence": "^0.4.6",
+    "http-proxy-middleware": "^0.17.3"
+  },
+  "gulpConfig": {
+    "apiUrl": "https://www.cfniu.com"
+  }
+}
