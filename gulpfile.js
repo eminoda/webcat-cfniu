@@ -13,11 +13,12 @@ var gulp = require('gulp-help')(require('gulp')),
   fs = require('fs'),
   colors = require('colors'),
   program = require('commander'),
-  Promise = require('bluebird');
+  Promise = require('bluebird'),
+  imagemin = require('gulp-imagemin'),
 package = require('./package.json');
 
 // 构建项目
-gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
+gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-image','build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
 
 //监听项目
 gulp.task('watch', '项目监听>>> gulp watch', function() {
@@ -73,14 +74,16 @@ function createDir(dir) {
             }
           }
         });
-        resolve();
       }else{
-        reject(dir+'目录已存在');
+        fs.stat(dir,function(err,stats){
+          console.log(stats);
+        })
+        //reject(dir+'目录已存在');
       }
     })
   } catch (e) {
     printError(e);
-    resolve();
+    reject();
   }
 }
 
@@ -117,6 +120,11 @@ gulp.task('server', '启动服务>>>todo', ['build'], function() {
   });
 });
 
+gulp.task('build-image',function(){
+  return gulp.src('./src/resources/image/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/resources/image/'));
+  })
 // build wx js
 gulp.task('build-js', function() {
   return gulp.src(['./src/**/**/*.js', './src/**/*.js', './src/*.js'])

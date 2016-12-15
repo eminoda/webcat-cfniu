@@ -9,7 +9,14 @@
   "tabBar": {
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "首页"
+      "text": "首页",
+      "iconPath":"./resources/image/niu.png",
+      "selectedIconPath":"./resources/image/niu.png"
+    },{
+      "pagePath": "pages/trade/dotrade/dotrade",
+      "text": "申请操盘",
+      "iconPath":"./resources/image/trade.png",
+      "selectedIconPath":"./resources/image/trade2.png"
     }]
   },
   "networkTimeout": {
