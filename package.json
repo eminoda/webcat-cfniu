@@ -17,17 +17,31 @@
   },
   "homepage": "https://github.com/eminoda/webcat-cfniu#readme",
   "devDependencies": {
+    "bluebird": "^3.4.6",
     "browser-sync": "^2.18.5",
+    "commander": "^2.9.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
+    "gulp-help": "^1.6.1",
     "gulp-if": "^2.0.2",
+    "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.0.0",
     "gulp-sequence": "^0.4.6",
-    "http-proxy-middleware": "^0.17.3"
+    "http-proxy-middleware": "^0.17.3",
+    "labrador": "^0.6.6",
+    "labrador-cli": "^0.6.10",
+    "path": "^0.12.7",
+    "utils": "^0.3.1"
   },
   "gulpConfig": {
-    "apiUrl": "https://www.cfniu.com"
+    "apiUrl": "https://www.cfniu.com",
+    "wxExt": [
+      ".js",
+      ".json",
+      ".wxml",
+      ".wxss"
+    ]
   }
 }
