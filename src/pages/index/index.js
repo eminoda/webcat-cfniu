@@ -22,12 +22,14 @@ Page({
       });
     });
     wx.request({
-      url: 'https://192.168.1.98/api/trade/getProduct.api', //仅为示例，并非真实的接口地址
+      url: '[$apiUrl]/api/user/login', //仅为示例，并非真实的接口地址
       data: {
-        pzType:0
+        username:'aaaa',
+        password:'a111111'
       },
+      method:'POST',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
         console.log(res.data)

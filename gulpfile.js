@@ -15,10 +15,10 @@ var gulp = require('gulp-help')(require('gulp')),
   program = require('commander'),
   Promise = require('bluebird'),
   imagemin = require('gulp-imagemin'),
-package = require('./package.json');
+  package = require('./package.json');
 
 // 构建项目
-gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-image','build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
+gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-image', 'build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
 
 //监听项目
 gulp.task('watch', '项目监听>>> gulp watch', function() {
@@ -55,77 +55,35 @@ gulp.task('add', '添加文件>>> gulp add --dir=./src/pages/test --name=test', 
   }
 });
 
-function createDir(dir) {
-  try {
-    return new Promise(function(resolve, reject) {
-      if (!fs.existsSync(dir)) {
-        console.log('开始创建路径==>' + dir);
-        var pathtmp;
-        dir.split('/').forEach(function(dirname) {
-          if (pathtmp) {
-            pathtmp = path.join(pathtmp, dirname);
-          } else {
-            pathtmp = dirname;
-          }
-          if (!fs.existsSync(pathtmp)) {
-            console.log('开始创建路径==>' + pathtmp);
-            if (!fs.mkdirSync(pathtmp)) {
-              return false;
-            }
-          }
-        });
-      }else{
-        fs.stat(dir,function(err,stats){
-          console.log(stats);
-        })
-        //reject(dir+'目录已存在');
-      }
-    })
-  } catch (e) {
-    printError(e);
-    reject();
-  }
-}
-
-function createFile(path, name) {
-  try {
-    console.log('开始创建==>'.green + path.green + name.green);
-    return fs.writeFileSync(path + name);
-  } catch (e) {
-    printError(e);
-  }
-}
-
-function printError(err) {
-  console.error(colors.red(err));
-  return false;
-}
 // 本地开发服务模拟
-gulp.task('server', '启动服务>>>todo', ['build'], function() {
+gulp.task('server', '启动服务>>>todo', function() {
   // 代理配置2
-  var context = ['**/*.api*', '/common/**'],
+  var context = ['/api/**','/common/**'],
     options = {
-      target: "http://192.168.1.87:9080",
+      target: 'http://192.168.1.98:8080',
+      pathRewrite: {
+        '^/api/': '/' // rewrite path 
+      }
     };
-  // create the proxy 
-  var proxy = proxyMiddleware(context, options);
   bs.init({
     server: {
-      baseDir: ['dev/', '../com.com.9niu.api/sit/']
+      baseDir: ['dist/']
     },
-    host: "dev.9niutest.com",
-    middleware: [proxy],
-    open: "external",
-    browser: "chrome"
+    host: "127.0.0.1",
+    middleware: [proxy(context, options)],
+    port: 8888,
+    open: "false",
+    //browser: "chrome"
   });
+  console.log(colors.yellow('服务已启动==>http://127.0.0.1:8888'));
 });
 
-gulp.task('build-image',function(){
-  return gulp.src('./src/resources/image/*')
-    .pipe(imagemin())
-    .pipe(gulp.dest('dist/resources/image/'));
+gulp.task('build-image', function() {
+    return gulp.src('./src/resources/image/*')
+      .pipe(imagemin())
+      .pipe(gulp.dest('dist/resources/image/'));
   })
-// build wx js
+  // build wx js
 gulp.task('build-js', function() {
   return gulp.src(['./src/**/**/*.js', './src/**/*.js', './src/*.js'])
     .pipe(replace('[$apiUrl]', package.gulpConfig.apiUrl))
@@ -153,3 +111,49 @@ gulp.task('build-extname-wxss', function() {
     }))
     .pipe(gulp.dest('./dist'));
 });
+
+function createDir(dir) {
+  try {
+    return new Promise(function(resolve, reject) {
+      if (!fs.existsSync(dir)) {
+        console.log('开始创建路径==>' + dir);
+        var pathtmp;
+        dir.split('/').forEach(function(dirname) {
+          if (pathtmp) {
+            pathtmp = path.join(pathtmp, dirname);
+          } else {
+            pathtmp = dirname;
+          }
+          if (!fs.existsSync(pathtmp)) {
+            console.log('开始创建路径==>' + pathtmp);
+            if (!fs.mkdirSync(pathtmp)) {
+              return false;
+            }
+          }
+        });
+      } else {
+        fs.stat(dir, function(err, stats) {
+            console.log(stats);
+          })
+          //reject(dir+'目录已存在');
+      }
+    })
+  } catch (e) {
+    printError(e);
+    reject();
+  }
+}
+
+function createFile(path, name) {
+  try {
+    console.log('开始创建==>'.green + path.green + name.green);
+    return fs.writeFileSync(path + name);
+  } catch (e) {
+    printError(e);
+  }
+}
+
+function printError(err) {
+  console.error(colors.red(err));
+  return false;
+}
