@@ -18,7 +18,7 @@ var gulp = require('gulp-help')(require('gulp')),
   package = require('./package.json');
 
 // 构建项目
-gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-image', 'build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
+gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-font','build-image', 'build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
 
 //监听项目
 gulp.task('watch', '项目监听>>> gulp watch', function() {
@@ -26,6 +26,7 @@ gulp.task('watch', '项目监听>>> gulp watch', function() {
   gulp.watch(['./src/**/**/*.scss', './src/**/*.scss', './src/*.scss'], ['build-extname-wxss']);
   gulp.watch(['./src/**/**/*.js', './src/**/*.js', './src/*.js'], ['build-js']);
   gulp.watch(['./src/**/**/*.json', './src/**/*.json', './src/*.json'], ['build-json']);
+  gulp.watch(['./src/resources/**'], ['build-image']);
 });
 
 // 清理项目
@@ -58,7 +59,7 @@ gulp.task('add', '添加文件>>> gulp add --dir=./src/pages/test --name=test', 
 // 本地开发服务模拟
 gulp.task('server', '启动服务>>>todo', function() {
   // 代理配置2
-  var context = ['/api/**','/common/**'],
+  var context = ['/api/**', '/common/**'],
     options = {
       target: 'http://192.168.1.98:8080',
       pathRewrite: {
@@ -79,14 +80,22 @@ gulp.task('server', '启动服务>>>todo', function() {
 });
 
 gulp.task('build-image', function() {
-    return gulp.src('./src/resources/image/*')
-      .pipe(imagemin())
-      .pipe(gulp.dest('dist/resources/image/'));
-  })
-  // build wx js
+  return gulp.src('./src/resources/image/**')
+    //.pipe(imagemin())
+    .pipe(gulp.dest('dist/resources/image'));
+});
+gulp.task('build-font', function() {
+  return gulp.src('./src/resources/font/**')
+    //.pipe(imagemin())
+    .pipe(gulp.dest('dist/resources/font'));
+});
+// build wx js
 gulp.task('build-js', function() {
+  var env = argv.env || 'dev';
+  var apiUrl = package.gulpConfig[env].apiUrl;
+  console.log(apiUrl);
   return gulp.src(['./src/**/**/*.js', './src/**/*.js', './src/*.js'])
-    .pipe(replace('[$apiUrl]', package.gulpConfig.apiUrl))
+    .pipe(replace('[$apiUrl]', apiUrl))
     .pipe(gulp.dest('./dist'));
 });
 // build wx json
@@ -111,7 +120,7 @@ gulp.task('build-extname-wxss', function() {
     }))
     .pipe(gulp.dest('./dist'));
 });
-
+// 创建目录
 function createDir(dir) {
   try {
     return new Promise(function(resolve, reject) {
@@ -133,17 +142,18 @@ function createDir(dir) {
         });
       } else {
         fs.stat(dir, function(err, stats) {
-            console.log(stats);
-          })
-          //reject(dir+'目录已存在');
+          reject(dir + '目录已存在');
+          console.log(stats);
+        })
       }
+      resolve();
     })
   } catch (e) {
     printError(e);
     reject();
   }
 }
-
+// 创建文件
 function createFile(path, name) {
   try {
     console.log('开始创建==>'.green + path.green + name.green);
@@ -153,6 +163,7 @@ function createFile(path, name) {
   }
 }
 
+// 打印错误日志
 function printError(err) {
   console.error(colors.red(err));
   return false;
