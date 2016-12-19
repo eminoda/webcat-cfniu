@@ -7,3 +7,44 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 }
+
+.contain {
+  .title {
+    color: #3B4252;
+    font-size: 28rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-bottom: 1px solid #E5E5E5;
+  }
+}
+
+.form-group {
+  font-size: 28rpx;
+  overflow: hidden;
+  image.icon {
+    width: 28rpx;
+    height: 28rpx;
+    float: left;
+    position: relative;
+    top: 40rpx;
+  }
+  input {
+    display: inline-block;
+    margin-left: 20rpx;
+    padding: 30rpx 0;
+    width: 92%;
+    float: right;
+    border-bottom: 1px solid #E5E5E5;
+  }
+  .input-nav {
+    position: relative;
+    top: -75rpx;
+    float: right;
+    margin-right: 30rpx;
+    display: inline-block;
+  }
+}
+
+.pleft-15 {
+  padding-left: 30rpx;
+}

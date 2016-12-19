@@ -18,7 +18,7 @@ var gulp = require('gulp-help')(require('gulp')),
   package = require('./package.json');
 
 // 构建项目
-gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-font','build-image', 'build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
+gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-image', 'build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
 
 //监听项目
 gulp.task('watch', '项目监听>>> gulp watch', function() {

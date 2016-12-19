@@ -8,7 +8,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../trade/dotrade/dotrade'
+      url: '../user/login/login'
     });
   },
   onLoad: function() {

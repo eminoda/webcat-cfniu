@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/user/login/login",
     "pages/index/index",
     "pages/trade/dotrade/dotrade"
   ],
@@ -10,13 +11,13 @@
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath":"./resources/image/niu.png",
-      "selectedIconPath":"./resources/image/niu.png"
+      "iconPath":"resources/image/niu.png",
+      "selectedIconPath":"resources/image/niu.png"
     },{
       "pagePath": "pages/trade/dotrade/dotrade",
       "text": "申请操盘",
-      "iconPath":"./resources/image/trade.png",
-      "selectedIconPath":"./resources/image/trade2.png"
+      "iconPath":"resources/image/trade.png",
+      "selectedIconPath":"resources/image/trade2.png"
     }]
   },
   "networkTimeout": {

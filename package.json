@@ -43,8 +43,14 @@
     "wxExt": [
       ".js",
       ".json",
-      ".wxml",
-      ".wxss"
-    ]
+      ".html",
+      ".scss"
+    ],
+    "dev":{
+      "apiUrl":"http://127.0.0.1:8888"
+    },
+    "pro":{
+      "apiUrl":"https://www.cfniu.com"
+    }
   }
 }
