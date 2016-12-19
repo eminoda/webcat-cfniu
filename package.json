@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "concurrently \"gulp build\" \"gulp server\" "
+    "build": "concurrently \"gulp build\" \"gulp server\" ",
+    "buildpro": "concurrently \"gulp build --env=pro\" \"gulp server\" "
   },
   "repository": {
     "type": "git",
