@@ -32,7 +32,7 @@ gulp.task('watch', '项目监听>>> gulp watch', function() {
 
 // 清理项目
 gulp.task('clean', '清理项目>>> gulp clean', function() {
-  return gulp.src(['pages', './*.log', './app.wxss', './app.json', './app.js', './app.wxml'])
+  return gulp.src(['./dist/','./*.log'])
     .pipe(clean());
 });
 
