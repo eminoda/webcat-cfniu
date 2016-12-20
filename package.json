@@ -33,6 +33,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.0.0",
     "gulp-sequence": "^0.4.6",
+    "gulp-uglify": "^2.0.0",
     "http-proxy-middleware": "^0.17.3",
     "labrador": "^0.6.6",
     "labrador-cli": "^0.6.10",
@@ -47,11 +48,11 @@
       ".html",
       ".scss"
     ],
-    "dev":{
-      "apiUrl":"http://127.0.0.1:8888"
+    "dev": {
+      "apiUrl": "http://127.0.0.1:8888"
     },
-    "pro":{
-      "apiUrl":"https://www.cfniu.com"
+    "pro": {
+      "apiUrl": "https://www.cfniu.com"
     }
   }
 }

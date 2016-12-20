@@ -15,6 +15,7 @@ var gulp = require('gulp-help')(require('gulp')),
   program = require('commander'),
   Promise = require('bluebird'),
   imagemin = require('gulp-imagemin'),
+  uglify = require('gulp-uglify'),
   package = require('./package.json');
 
 // 构建项目
@@ -94,7 +95,7 @@ gulp.task('build-js', function() {
   var env = argv.env || 'dev';
   var apiUrl = package.gulpConfig[env].apiUrl;
   console.log(apiUrl);
-  return gulp.src(['./src/**/**/*.js', './src/**/*.js', './src/*.js'])
+  return gulp.src(['./src/**/**/**/*.js','./src/**/**/*.js', './src/**/*.js', './src/*.js'])
     .pipe(replace('[$apiUrl]', apiUrl))
     .pipe(gulp.dest('./dist'));
 });

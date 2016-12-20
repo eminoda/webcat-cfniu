@@ -3,11 +3,11 @@
     <view class="title">登录财富牛</view>
     <view class="form-group">
       <image class="icon" src="{{usernameIcon}}"></image>
-      <input type="text" placeholder="用户名/手机号码" id="username" bindfocus="focusInput" bindblur="blurInput" />
+      <input type="text" placeholder="用户名/手机号码" id="username" bindfocus="focusInput" bindblur="blurInput" bindinput="saveForm"/>
     </view>
     <view class="form-group">
       <image class="icon" src="{{passwordIcon}}"></image>
-      <input type="text" placeholder="登录密码" id="password" bindfocus="focusInput" bindblur="blurInput" />
+      <input type="text" placeholder="登录密码" id="password" bindfocus="focusInput" bindblur="blurInput"  bindinput="saveForm"/>
       <text class="input-nav">忘记密码？</text>
     </view>
   </form>

@@ -1,4 +1,5 @@
-var Promise = require('./bluebird/js/release/bluebird.js');
+var Promise = require('./bluebird/bluebird.min.js');
+var constant = require('./constant.js');
 var http = {
   commonRequest: function(form, url, method, that) {
     that.setData({
@@ -14,14 +15,42 @@ var http = {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
+          // 200
+          if (res.statusCode === constant.httpCode.OK) {
+            if(res.data.status=='true' || res.data.success){
+              res.data.success = true;
+            }else{
+              res.data.success = false;
+            }
+            resolve(res.data);
+          } else if (res.statusCode === constant.httpCode.NOT_FOUND) {
+            // 404
+            reject({
+              statusCode: res.statusCode,
+              resultMsg: constant.respText.NOT_FOUND
+            });
+          } else {
+            // 500 其他
+            reject({
+              statusCode: res.statusCode,
+              resultMsg: constant.respText.Server_Error
+            });
+          }
+        },
+        fail: function(res) {
+          reject({
+            statusCode: res.statusCode,
+            resultMsg: constant.respText.Server_Error
+          });
+        },
+        complete: function(res) {
           that.setData({
             loading: false,
             disabled: false
           });
-          resolve({ data: 123 });
         }
-      })
-    })
+      });
+    });
   }
-}
+};
 exports = module.exports = http;
