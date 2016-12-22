@@ -9,7 +9,7 @@ var validator = {
     // 有规则
     if (valid) {
       for (var i = 0; i < order[valid].length; i++) {
-        if (!obj[order[i]]) {
+        if (!obj[order[valid][i]]) {
           return {
             success: false,
             name: order[valid][i]

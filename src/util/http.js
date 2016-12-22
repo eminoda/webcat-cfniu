@@ -17,7 +17,7 @@ var http = {
           disabled: true
         });
         wx.request({
-          url: '[$apiUrl]/api' + url, //仅为示例，并非真实的接口地址
+          url: '[$httpUrl][$apiUrl]' + url, //仅为示例，并非真实的接口地址
           data: form,
           method: method || 'GET',
           header: {

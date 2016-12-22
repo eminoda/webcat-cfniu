@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/user/login/login",
     "pages/index/index",
+    "pages/user/login/login",
     "pages/trade/dotrade/dotrade"
   ],
   "window": {

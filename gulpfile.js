@@ -59,6 +59,9 @@ gulp.task('add', '添加文件>>> gulp add --dir=./src/pages/test --name=test', 
 
 // 本地开发服务模拟
 gulp.task('server', '启动服务>>>todo', function() {
+  var env = argv.env || 'dev';
+  var httpUrl = package.gulpConfig[env].httpUrl;
+  console.log('代理地址：'+httpUrl);
   // 代理配置2
   var context = ['/api/**', '/common/**'],
     options = {
@@ -93,9 +96,10 @@ gulp.task('build-font', function() {
 // build wx js
 gulp.task('build-js', function() {
   var env = argv.env || 'dev';
+  var httpUrl = package.gulpConfig[env].httpUrl;
   var apiUrl = package.gulpConfig[env].apiUrl;
-  console.log(apiUrl);
   return gulp.src(['./src/**/**/**/*.js','./src/**/**/*.js', './src/**/*.js', './src/*.js'])
+    .pipe(replace('[$httpUrl]', httpUrl))
     .pipe(replace('[$apiUrl]', apiUrl))
     .pipe(gulp.dest('./dist'));
 });
