@@ -29,9 +29,12 @@ Page({
   },
   login: function(e) {
     var that = this;
-    http.commonRequest(this.data.loginForm, '/user/login', 'POST', that,'loginValid').then(function(data) {
+    http.commonRequest(this.data.loginForm, '/user/login', 'POST', that, 'loginValid').then(function(data) {
       if (data.success) {
-        modal.showTipModal('登录成功');
+        // modal.showTipModal('登录成功');
+        wx.switchTab({
+          url: '../../index/index'
+        });
       } else {
         modal.showTipModal(constant.respText.LOGIN_FAIL);
       }

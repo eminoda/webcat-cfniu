@@ -1,3 +1,4 @@
+var http = require('../../util/http.js');
 //获取应用实例
 var app = getApp();
 Page({
@@ -35,5 +36,10 @@ Page({
         console.log(res.data)
       }
     })
+    http.commonRequest(this.data.loginForm, '/user/getbalance', 'GET', that).then(function(data) {
+      console.log(data);
+    }, function(err) {
+      modal.showTipModal(err.resultMsg);
+    });
   }
 });
