@@ -1,6 +1,12 @@
-var Promise = require('../util/bluebird/bluebird.min.js');
+var Promise = require('../lib/bluebird.min.js');
 var constant = require('../util/constant.js');
+var wxUtil = require('../util/wxUtil.js');
 var loginService = {
+  /** 
+   * [saveLoginInfo 记录登录信息]
+   * @Author   ShiXingHao
+   * @DateTime 2016-12-23
+   */
   saveLoginInfo: function(obj) {
     return new Promise(function(resolve, reject) {
       var loginInfo = {
@@ -9,18 +15,23 @@ var loginService = {
         nick: obj.nick,
         verify: obj.verify,
         userLever: obj.userLever
-      }
+      };
       wx.setStorage({
         key: 'loginInfo',
         data: loginInfo,
-        success: function(res) {
-          resolve({success:true})
+        success: function() {
+          resolve({success:true});
         },
-        fail: function(res) {
-          reject({success:false,resultMsg:constant.respText.SERVER_ERROR})
+        fail: function() {
+          reject({success:false,resultMsg:constant.respText.SERVER_ERROR});
         }
-      })
-    })
+      });
+    });
+  },
+  isLogin:function(){
+    if(!wx.getStorageSync('loginInfo')){
+      wxUtil.switchTab('../user/login/login');
+    }
   }
-}
+};
 exports = module.exports = loginService;

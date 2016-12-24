@@ -32,7 +32,7 @@ gulp.task('watch', '项目监听>>> gulp watch', function() {
 
 // 清理项目
 gulp.task('clean', '清理项目>>> gulp clean', function() {
-  return gulp.src(['./dist/','./*.log'])
+  return gulp.src(['./dist/', './*.log'])
     .pipe(clean());
 });
 
@@ -61,9 +61,9 @@ gulp.task('add', '添加文件>>> gulp add --dir=./src/pages/test --name=test', 
 gulp.task('server', '启动服务>>>todo', function() {
   var env = argv.env || 'dev';
   var httpUrl = package.gulpConfig[env].httpUrl;
-  console.log('代理地址：'+httpUrl);
+  console.log('代理地址：' + httpUrl);
   // 代理配置2
-  var context = ['/api/**', '/common/**'],
+  var context = ['/api/**'],
     options = {
       target: 'http://192.168.1.98:8080',
       pathRewrite: {
@@ -98,7 +98,7 @@ gulp.task('build-js', function() {
   var env = argv.env || 'dev';
   var httpUrl = package.gulpConfig[env].httpUrl;
   var apiUrl = package.gulpConfig[env].apiUrl;
-  return gulp.src(['./src/**/**/**/*.js','./src/**/**/*.js', './src/**/*.js', './src/*.js'])
+  return gulp.src(['./src/**/**/**/*.js', './src/**/**/*.js', './src/**/*.js', './src/*.js'])
     .pipe(replace('[$httpUrl]', httpUrl))
     .pipe(replace('[$apiUrl]', apiUrl))
     .pipe(gulp.dest('./dist'));
@@ -118,7 +118,12 @@ gulp.task('build-extname-wxml', function() {
 });
 // build wx css
 gulp.task('build-extname-wxss', function() {
+  var env = argv.env || 'dev';
+  var httpUrl = package.gulpConfig[env].httpUrl;
+  var apiUrl = package.gulpConfig[env].apiUrl;
   return gulp.src(['./src/**/**/*.scss', './src/**/*.scss', './src/*.scss'])
+    .pipe(replace('[$httpUrl]', httpUrl))
+    .pipe(replace('[$apiUrl]', apiUrl))
     .pipe(sass().on('error', sass.logError))
     .pipe(rename(function(path) {
       path.extname = '.wxss';
@@ -167,7 +172,6 @@ function createFile(path, name) {
     printError(e);
   }
 }
-
 // 打印错误日志
 function printError(err) {
   console.error(colors.red(err));

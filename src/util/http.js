@@ -1,4 +1,4 @@
-var Promise = require('./bluebird/bluebird.min.js');
+var Promise = require('../lib/bluebird.min.js');
 var constant = require('./constant.js');
 var validator = require('./validator.js');
 var modal = require('./modal.js');

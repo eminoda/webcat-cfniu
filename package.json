@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"concurrently \"gulp build --env=dev\" \"gulp server\" ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "concurrently \"gulp build --env=dev\" \"gulp server\" ",
     "buildpro": "concurrently \"gulp build --env=pro\" \"gulp server\" "
