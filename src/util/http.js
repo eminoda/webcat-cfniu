@@ -1,4 +1,4 @@
-var Promise = require('../lib/bluebird.min.js');
+var Promise = require('../lib/es6-promise.js').Promise;
 var constant = require('./constant.js');
 var validator = require('./validator.js');
 var modal = require('./modal.js');
@@ -6,8 +6,11 @@ var modal = require('./modal.js');
 var http = {
   commonRequest: function(form, url, method, that,valid) {
     var valid = validator.commonValidator(form,valid);
+    console.log(form);
+    console.log(url);
     return new Promise(function(resolve, reject) {
       if (!valid.success) {
+        console.log('a11');
         reject({
           resultMsg: constant.validatorText[valid.name]||constant.validatorText[valid.other]
         })
@@ -33,23 +36,27 @@ var http = {
               }
               resolve(res.data);
             } else if (res.statusCode === constant.httpCode.NOT_FOUND) {
+              console.log('404');
               // 404
               reject({
                 statusCode: res.statusCode,
                 resultMsg: constant.respText.NOT_FOUND
               });
             } else {
+              console.log('500');
               // 500 其他
               reject({
                 statusCode: res.statusCode,
-                resultMsg: constant.respText.Server_Error
+                resultMsg: constant.respText.SERVER_ERROR
               });
             }
           },
           fail: function(res) {
+            console.log(res);
+            console.log('600');
             reject({
               statusCode: res.statusCode,
-              resultMsg: constant.respText.Server_Error
+              resultMsg: constant.respText.SERVER_ERROR
             });
           },
           complete: function(res) {

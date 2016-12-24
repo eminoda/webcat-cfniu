@@ -6,8 +6,7 @@ var constant = require('../../../util/constant.js');
 
 Page({
   data: {
-    usernameIcon: constant.icon.noselect.username,
-    passwordIcon: constant.icon.noselect.password,
+    foucs:null,
     loginForm: {
       username: null,
       password: null
@@ -15,12 +14,12 @@ Page({
   },
   focusInput: function(e) {
     this.setData({
-      [e.target.id + 'Icon']: constant.icon.select[e.target.id]
+      foucs: e.target.id
     });
   },
   blurInput: function(e) {
     this.setData({
-      [e.target.id + 'Icon']: constant.icon.noselect[e.target.id]
+      foucs: null
     });
   },
   // 保存参数

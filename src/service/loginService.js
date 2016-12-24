@@ -1,4 +1,4 @@
-var Promise = require('../lib/bluebird.min.js');
+var Promise = require('../lib/es6-promise.js').Promise;
 var constant = require('../util/constant.js');
 var wxUtil = require('../util/wxUtil.js');
 var loginService = {

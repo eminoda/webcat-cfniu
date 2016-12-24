@@ -1,15 +1,4 @@
 exports = module.exports = {
-  // 图标
-  icon: {
-    select: {
-      username: '/resources/image/iconfont/用户2.png',
-      password: '/resources/image/iconfont/密码2.png'
-    },
-    noselect: {
-      username: '/resources/image/iconfont/用户.png',
-      password: '/resources/image/iconfont/密码.png'
-    }
-  },
   // 响应文案
   respText: {
     NOT_FOUND: '系统找不到该资源',
@@ -20,7 +9,7 @@ exports = module.exports = {
   // http状态码
   httpCode: {
     'NOT_FOUND': 404,
-    'Server_Error': 500,
+    'SERVER_ERROR': 500,
     'OK': 200
   },
   // 表单验证文案
