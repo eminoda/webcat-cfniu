@@ -11,13 +11,13 @@
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath":"resources/image/iconfont/首页.png",
-      "selectedIconPath":"resources/image/iconfont/首页2.png"
+      "iconPath":"resources/image/tabBar/niu.png",
+      "selectedIconPath":"resources/image/tabBar/niu2.png"
     },{
       "pagePath": "pages/trade/dotrade/dotrade",
       "text": "申请操盘",
-      "iconPath":"resources/image/iconfont/操盘.png",
-      "selectedIconPath":"resources/image/iconfont/操盘2.png"
+      "iconPath":"resources/image/tabBar/trade.png",
+      "selectedIconPath":"resources/image/tabBar/trade2.png"
     }]
   },
   "networkTimeout": {

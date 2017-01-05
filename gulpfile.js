@@ -3,7 +3,7 @@ var gulp = require('gulp-help')(require('gulp')),
   clean = require('gulp-clean'),
   sequence = require('gulp-sequence'),
   babel = require('gulp-babel'),
-  //gulpif = require('gulp-if'),
+  gulpif = require('gulp-if'),
   replace = require('gulp-replace'),
   sass = require('gulp-sass'),
   proxy = require('http-proxy-middleware'),
@@ -19,12 +19,17 @@ var gulp = require('gulp-help')(require('gulp')),
   uglify = require('gulp-uglify'),
   package = require('./package.json');
 
+var env = argv.env || 'dev';
+console.log('当前环境：'+env);
+var httpUrl = package.gulpConfig[env].httpUrl;
+var apiUrl = package.gulpConfig[env].apiUrl;
+
 // 构建项目
 gulp.task('build', '构建项目>>> gulp build', sequence('clean', ['build-image', 'build-extname-wxml', 'build-extname-wxss', 'build-js', 'build-json'], 'watch'));
 
 //监听项目
 gulp.task('watch', '项目监听>>> gulp watch', function() {
-  gulp.watch(['./src/**/**/*.html', './src/**/*.html', './src/*.html'], ['build-extname-wxml']);
+  gulp.watch(['./src/**/**/*.html', './src/**/**/**/*.html','./src/**/*.html', './src/*.html'], ['build-extname-wxml']);
   gulp.watch(['./src/**/**/*.scss', './src/**/*.scss', './src/*.scss'], ['build-extname-wxss']);
   gulp.watch(['./src/**/**/*.js', './src/**/*.js', './src/*.js'], ['build-js']);
   gulp.watch(['./src/**/**/*.json', './src/**/*.json', './src/*.json'], ['build-json']);
@@ -60,8 +65,6 @@ gulp.task('add', '添加文件>>> gulp add --dir=./src/pages/test --name=test', 
 
 // 本地开发服务模拟
 gulp.task('server', '启动服务>>>todo', function() {
-  var env = argv.env || 'dev';
-  var httpUrl = package.gulpConfig[env].httpUrl;
   console.log('代理地址：' + httpUrl);
   // 代理配置2
   var context = ['/api/**'],
@@ -86,7 +89,7 @@ gulp.task('server', '启动服务>>>todo', function() {
 
 gulp.task('build-image', function() {
   return gulp.src('./src/resources/image/**')
-    //.pipe(imagemin())
+    .pipe(imagemin())
     .pipe(gulp.dest('dist/resources/image'));
 });
 gulp.task('build-font', function() {
@@ -96,12 +99,10 @@ gulp.task('build-font', function() {
 });
 // build wx js
 gulp.task('build-js', function() {
-  var env = argv.env || 'dev';
-  var httpUrl = package.gulpConfig[env].httpUrl;
-  var apiUrl = package.gulpConfig[env].apiUrl;
   return gulp.src(['./src/**/**/**/*.js', './src/**/**/*.js', './src/**/*.js', './src/*.js'])
     .pipe(replace('[$httpUrl]', httpUrl))
     .pipe(replace('[$apiUrl]', apiUrl))
+    .pipe(gulpif(env=='pro',uglify({mangle: true,compress: true})))
     .pipe(gulp.dest('./dist'));
 });
 // build wx json
@@ -111,7 +112,7 @@ gulp.task('build-json', function() {
 });
 // build wx wxml
 gulp.task('build-extname-wxml', function() {
-  return gulp.src(['./src/**/**/*.html', './src/**/*.html', './src/*.html'])
+  return gulp.src(['./src/**/**/*.html','./src/**/**/**/*.html', './src/**/*.html', './src/*.html'])
     .pipe(rename(function(path) {
       path.extname = '.wxml';
     }))
@@ -119,13 +120,10 @@ gulp.task('build-extname-wxml', function() {
 });
 // build wx css
 gulp.task('build-extname-wxss', function() {
-  var env = argv.env || 'dev';
-  var httpUrl = package.gulpConfig[env].httpUrl;
-  var apiUrl = package.gulpConfig[env].apiUrl;
   return gulp.src(['./src/**/**/*.scss', './src/**/*.scss', './src/*.scss'])
     .pipe(replace('[$httpUrl]', httpUrl))
     .pipe(replace('[$apiUrl]', apiUrl))
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(rename(function(path) {
       path.extname = '.wxss';
     }))

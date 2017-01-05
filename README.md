@@ -24,4 +24,6 @@
   * service   ----服务
   * util      ----基础工具，wxApi封装
 
-2. 
+2. 字体文件iconfont
+  wx不支持iconfont的外部引用个，需要将字体文件convert base64导入。
+  demo中包含字体文件的html显示例子，供查阅。
