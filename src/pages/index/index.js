@@ -1,5 +1,5 @@
 var constant = require('../../util/constant.js');
-var http = require('../../util/http.js');
+var http = require('../../service/httpService.js');
 var modal = require('../../util/modal.js');
 //获取应用实例
 var app = getApp();

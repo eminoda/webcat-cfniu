@@ -102,9 +102,6 @@ gulp.task('build-js', function() {
   return gulp.src(['./src/**/**/**/*.js', './src/**/**/*.js', './src/**/*.js', './src/*.js'])
     .pipe(replace('[$httpUrl]', httpUrl))
     .pipe(replace('[$apiUrl]', apiUrl))
-    .pipe(babel({
-            presets: ['es2015']
-        }))
     .pipe(gulp.dest('./dist'));
 });
 // build wx json

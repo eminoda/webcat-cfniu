@@ -1,5 +1,5 @@
 var loginService = require('../../../service/loginService.js');
-var http = require('../../../util/http.js');
+var http = require('../../../service/httpService.js');
 var modal = require('../../../util/modal.js');
 var wxUtil = require('../../../util/wxUtil.js');
 var constant = require('../../../util/constant.js');
