@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/user/login/login",
-    "pages/trade/dotrade/dotrade"
+    "pages/trade/dotrade/dotrade",
+    "pages/trade/mytrade/mytrade"
   ],
   "window": {
     "navigationBarTitleText": "Demo"
@@ -15,7 +16,7 @@
       "selectedIconPath":"resources/image/tabBar/niu2.png"
     },{
       "pagePath": "pages/trade/dotrade/dotrade",
-      "text": "申请操盘",
+      "text": "操盘",
       "iconPath":"resources/image/tabBar/trade.png",
       "selectedIconPath":"resources/image/tabBar/trade2.png"
     }]

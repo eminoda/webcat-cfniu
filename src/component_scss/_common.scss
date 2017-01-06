@@ -1,4 +1,4 @@
-// 基础色
+// >>>>>>>>>>>基础色<<<<<<<<<<<<<
 $c-grey:#e5e5e5;
 $c-blue:#566B96;
 $c-blue-light:#3182AC;
@@ -7,40 +7,42 @@ $c-white:#FFFFFF;
 .color-red{
   color:$c-red;
 }
-// 布局
+// border-bottom
+.bd-bm-grep {
+  border-bottom: 1px solid $c-grey;
+}
+// >>>>>>>>>>>布局<<<<<<<<<<<<<
 .fl {
   float: left;
 }
-
 .fr {
   float: right;
 }
-
-.icon {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-}
-// 大小宽度
 .width50 {
   width: 50%;
 }
-
 .width33 {
   width: 33.3%;
 }
-
-// 公共组件
+.pleft-30 {
+  padding-left: 30rpx;
+}
+.contain-top{
+  border-top: 1px solid red;
+  margin-top: 140rpx;
+}
+// >>>>>>>>>>>公共组件<<<<<<<<<<<<<
 .tab-wrap {
+  position: fixed;
+  top: 0;
+  width: 100%;
   color:$c-white;
-  padding:30rpx 0;
   padding-bottom: 20rpx;
   font-size: 24rpx;
   background-color: $c-blue-light;
   .tab {
+    
+  padding:30rpx 0;
     float: left;
     text-align: center;
     i {
@@ -50,17 +52,6 @@ $c-white:#FFFFFF;
   }
   .tab-text {}
 }
-
-
-
-.bd-bm-grep {
-  border-bottom: 1px solid $c-grey;
-}
-
-.pleft-30 {
-  padding-left: 30rpx;
-}
-
 .clearfix:after {
   content: ".";
   display: block;
@@ -69,7 +60,6 @@ $c-white:#FFFFFF;
   clear: both;
   visibility: hidden;
 }
-
 button.orange {
   background-color: #FF8C19;
   font-size: 28rpx;
