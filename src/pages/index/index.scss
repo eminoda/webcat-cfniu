@@ -1,3 +1,5 @@
+@import "../../component_scss/_common.scss";
+@import "../../component_scss/_font.scss";
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -17,4 +19,36 @@
 
 .usermotto {
   margin-top: 200px;
+}
+
+swiper {
+  height: 150px;
+}
+
+.slide-image {
+  display: block;
+  height: 150px;
+}
+
+.index-wrap {
+  background-color: $c-white;
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  color:$c-black;
+  padding:20rpx 30rpx;
+  i{
+    font-size: 72rpx;
+    color:$c-orange;
+    margin-right: 10rpx;
+  }
+  .index-text {
+    display: inline-block;
+    .title{
+      margin-bottom: 10rpx;
+    }
+    .desc{
+      font-size: 28rpx;
+      margin-bottom: 10rpx;
+    }
+  }
 }

@@ -1,4 +1,27 @@
-<view class="container">
+<view class="bg-color-grey">
+  <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
+    <block wx:for="{{banners}}">
+      <swiper-item>
+        <image src="{{item.imgUrl}}" class="slide-image" height="150px" width="100%" mode="scaleToFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <block wx:for="{{index}}">
+    <view class="index-wrap" bindtap="getbalance">
+      <i class="icon {{item.icon}}"></i>
+      <view class="index-text">
+        <view>
+          <text class="title">{{item.title}}</text>
+        </view>
+        <view>
+          <text class="desc">{{item.desc}}</text>
+        </view>
+        <!-- <text>{{item.desc}}</text> -->
+      </view>
+    </view>
+  </block>
+</view>
+<!-- <view class="container">
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -7,4 +30,4 @@
     <text class="user-motto" bindtap="getbalance">{{motto}}</text>
     <i class="icon icon-shangjiaqun"></i>
   </view>
-</view>
+</view> -->

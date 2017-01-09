@@ -2,13 +2,13 @@
   <form class="pleft-30">
     <view class="title">登录财富牛</view>
     <view class="form-group clearfix">
-      <i class="icon icon-yonghu {{foucs=='username'?'focus':'nofocus'}}"></i>
-      <input class="bd-bm-grep" type="text" placeholder="用户名/手机号码" id="username" bindfocus="focusInput" bindblur="blurInput" bindinput="saveForm" />
+      <i class="icon icon-yonghu {{key=='username'?'focus':'nofocus'}}"></i>
+      <input class="bd-bm-grep" id="username" type="text" placeholder="用户名/手机号码" maxlength="11" bindfocus="inputFoucs" bindblur="inputBlur"/>
     </view>
     <view class="form-group bd-bm-grep clearfix">
-      <i class="icon icon-mima {{foucs=='password'?'focus':'nofocus'}}"></i>
-      <input type="text" placeholder="登录密码" id="password" bindfocus="focusInput" bindblur="blurInput" bindinput="saveForm" />
-      <button class="input-nav" plain="true">忘记密码？</button>
+      <i class="icon icon-mima {{key=='password'?'focus':'nofocus'}}"></i>
+      <input id="password" type="password" placeholder="登录密码" maxlength="16" bindfocus="inputFoucs" bindblur="inputBlur"/>
+      <!-- <button class="input-nav" plain="true" bindtap="navForget">忘记密码？</button> -->
     </view>
   </form>
   <button class="orange" loading="{{loading}}" disabled="{{disabled}}" bindtap="login">登录</button>

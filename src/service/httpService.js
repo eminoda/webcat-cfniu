@@ -2,6 +2,8 @@ var Promise = require('../lib/es6-promise.js').Promise;
 var constant = require('../util/constant.js');
 var validator = require('../util/validator.js');
 var modal = require('../util/modal.js');
+var util = require('../util/util.js');
+var loginInfo = wx.getStorageSync('loginInfo');
 
 var http = {
   commonRequest: function(form, url, method, that,valid) {
@@ -13,7 +15,7 @@ var http = {
         console.log('a11');
         reject({
           resultMsg: constant.validatorText[valid.name]||constant.validatorText[valid.other]
-        })
+        });
       } else {
         that.setData({
           loading: true,
@@ -23,9 +25,10 @@ var http = {
           url: '[$httpUrl][$apiUrl]' + url, //仅为示例，并非真实的接口地址
           data: form,
           method: method || 'GET',
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+          // header: {
+          //   'content-type': 'application/x-www-form-urlencoded'
+          // },
+          header:util.buildHeader(loginInfo),
           success: function(res) {
             // 200
             if (res.statusCode === constant.httpCode.OK) {

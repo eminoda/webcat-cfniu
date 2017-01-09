@@ -8,6 +8,11 @@ var wxUtil = {
     wx.redirectTo({
       url: page
     })
+  },
+  navigateTo:function(page){
+    wx.navigateTo({
+      url: page
+    })
   }
 };
 exports = module.exports = wxUtil;

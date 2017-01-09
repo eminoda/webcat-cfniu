@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/user/login/login",
+    "pages/user/forget/forget",
+    "pages/router/tradeindex/tradeeindex",
     "pages/trade/dotrade/dotrade",
     "pages/trade/mytrade/mytrade"
   ],
@@ -15,7 +17,7 @@
       "iconPath":"resources/image/tabBar/niu.png",
       "selectedIconPath":"resources/image/tabBar/niu2.png"
     },{
-      "pagePath": "pages/trade/dotrade/dotrade",
+      "pagePath": "pages/router/tradeindex/tradeeindex",
       "text": "操盘",
       "iconPath":"resources/image/tabBar/trade.png",
       "selectedIconPath":"resources/image/tabBar/trade2.png"

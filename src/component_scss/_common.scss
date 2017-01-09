@@ -4,8 +4,16 @@ $c-blue:#566B96;
 $c-blue-light:#3182AC;
 $c-red:#FF4C4C;
 $c-white:#FFFFFF;
+$c-black:#333;
+$c-orange:#FCAD52;
 .color-red{
   color:$c-red;
+}
+.color-grey{
+  color:$c-grey;
+}
+.bg-color-grey{
+  background-color:$c-grey;
 }
 // border-bottom
 .bd-bm-grep {
@@ -37,7 +45,6 @@ $c-white:#FFFFFF;
   top: 0;
   width: 100%;
   color:$c-white;
-  padding-bottom: 20rpx;
   font-size: 24rpx;
   background-color: $c-blue-light;
   .tab {

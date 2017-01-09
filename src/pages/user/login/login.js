@@ -7,28 +7,35 @@ var constant = require('../../../util/constant.js');
 Page({
   data: {
     foucs:null,
+    key:null,
+    text:null,
     loginForm: {
       username: null,
       password: null
     }
   },
-  focusInput: function(e) {
+  inputFoucs:function(e){
     this.setData({
-      foucs: e.target.id
+      key:e.currentTarget.id
     });
   },
-  blurInput: function(e) {
-    this.setData({
-      foucs: null
-    });
-  },
-  // 保存参数
-  saveForm: function(e) {
+  inputBlur:function(e){
     this.data.loginForm[e.target.id] = e.detail.value;
     this.setData({
       loginForm: this.data.loginForm
     });
+    console.log(this.data.loginForm);
   },
+  navForget:function(){
+    wxUtil.navigateTo('../forget/forget');
+  },
+  // 保存参数
+  // saveForm: function(e) {
+  //   this.data.loginForm[e.target.id] = e.detail.value;
+  //   this.setData({
+  //     loginForm: this.data.loginForm
+  //   });
+  // },
   // 登录ajax
   login: function() {
     var that = this;

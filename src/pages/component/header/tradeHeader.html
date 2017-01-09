@@ -1,15 +1,15 @@
 <template is="tradeTab" data="{{selectTab}}"></template>
 <template name="tradeTab">
   <view class="tab-wrap clearfix">
-    <navigator class="width50 tab" open-type="redirect" url="../mytrade/mytrade">
+    <navigator class="width50 tab" open-type="navigate" url="../../trade/dotrade/dotrade">
       <i class="icon {{selectTab!='dotrade'?'icon-trade':'icon-trade-selected'}}"></i>
-      <text class="tab-text">我要操盘1</text>
+      <text class="tab-text">我要操盘</text>
     </navigator>
     <!-- <view class="width50 tab">
       <i class="icon {{selectTab!='tiyan'?'icon-xianshiqianggou11':'icon-trade-xianshiqianggou2'}}"></i>
       <text class="tab-text">限时抢购</text>
     </view> -->
-    <navigator class="width50 tab" open-type="switchTab" url="../dotrade/dotrade">
+    <navigator class="width50 tab" open-type="navigate" url="../../trade/mytrade/mytrade">
       <i class="icon {{selectTab!='mytrade'?'icon-mytrade':'icon-mytrade-selected'}}"></i>
       <text class="tab-text">我的操盘</text>
     </navigator>
